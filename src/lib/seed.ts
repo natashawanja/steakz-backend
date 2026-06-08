@@ -30,11 +30,35 @@ export async function seedDatabase() {
     prisma.user.upsert({ where: { email: 'cashier.london@steakz.com' }, update: {}, create: { email: 'cashier.london@steakz.com', name: 'Cashier London', role: 'CASHIER', password: await hash('Cash123!'), branchId: 'london' } }),
     prisma.user.upsert({ where: { email: 'waiter.london@steakz.com' }, update: {}, create: { email: 'waiter.london@steakz.com', name: 'Waiter London', role: 'WAITER', password: await hash('Wait123!'), branchId: 'london' } }),
 
+    // Manchester branch
+    prisma.user.upsert({ where: { email: 'bm.manchester@steakz.com' }, update: {}, create: { email: 'bm.manchester@steakz.com', name: 'Branch Manager Manchester', role: 'BM', password: await hash('BM@Manc1'), branchId: 'manchester' } }),
+    prisma.user.upsert({ where: { email: 'chef.manchester@steakz.com' }, update: {}, create: { email: 'chef.manchester@steakz.com', name: 'Head Chef Manchester', role: 'CHEF', password: await hash('Chef@Manc1'), branchId: 'manchester' } }),
+    prisma.user.upsert({ where: { email: 'cashier.manchester@steakz.com' }, update: {}, create: { email: 'cashier.manchester@steakz.com', name: 'Cashier Manchester', role: 'CASHIER', password: await hash('Cash@Manc1'), branchId: 'manchester' } }),
+    prisma.user.upsert({ where: { email: 'waiter.manchester@steakz.com' }, update: {}, create: { email: 'waiter.manchester@steakz.com', name: 'Waiter Manchester', role: 'WAITER', password: await hash('Wait@Manc1'), branchId: 'manchester' } }),
+
+    // Birmingham branch
+    prisma.user.upsert({ where: { email: 'bm.birmingham@steakz.com' }, update: {}, create: { email: 'bm.birmingham@steakz.com', name: 'Branch Manager Birmingham', role: 'BM', password: await hash('BM@Birm1'), branchId: 'birmingham' } }),
+    prisma.user.upsert({ where: { email: 'chef.birmingham@steakz.com' }, update: {}, create: { email: 'chef.birmingham@steakz.com', name: 'Head Chef Birmingham', role: 'CHEF', password: await hash('Chef@Birm1'), branchId: 'birmingham' } }),
+    prisma.user.upsert({ where: { email: 'cashier.birmingham@steakz.com' }, update: {}, create: { email: 'cashier.birmingham@steakz.com', name: 'Cashier Birmingham', role: 'CASHIER', password: await hash('Cash@Birm1'), branchId: 'birmingham' } }),
+    prisma.user.upsert({ where: { email: 'waiter.birmingham@steakz.com' }, update: {}, create: { email: 'waiter.birmingham@steakz.com', name: 'Waiter Birmingham', role: 'WAITER', password: await hash('Wait@Birm1'), branchId: 'birmingham' } }),
+
     // Leeds branch
     prisma.user.upsert({ where: { email: 'bm.leeds@steakz.com' }, update: {}, create: { email: 'bm.leeds@steakz.com', name: 'Branch Manager Leeds', role: 'BM', password: await hash('BM123!'), branchId: 'leeds' } }),
     prisma.user.upsert({ where: { email: 'chef.leeds@steakz.com' }, update: {}, create: { email: 'chef.leeds@steakz.com', name: 'Head Chef Leeds', role: 'CHEF', password: await hash('Chef123!'), branchId: 'leeds' } }),
     prisma.user.upsert({ where: { email: 'cashier.leeds@steakz.com' }, update: {}, create: { email: 'cashier.leeds@steakz.com', name: 'Cashier Leeds', role: 'CASHIER', password: await hash('Cash123!'), branchId: 'leeds' } }),
     prisma.user.upsert({ where: { email: 'waiter.leeds@steakz.com' }, update: {}, create: { email: 'waiter.leeds@steakz.com', name: 'Waiter Leeds', role: 'WAITER', password: await hash('Wait123!'), branchId: 'leeds' } }),
+
+    // Edinburgh branch
+    prisma.user.upsert({ where: { email: 'bm.edinburgh@steakz.com' }, update: {}, create: { email: 'bm.edinburgh@steakz.com', name: 'Branch Manager Edinburgh', role: 'BM', password: await hash('BM@Edin1'), branchId: 'edinburgh' } }),
+    prisma.user.upsert({ where: { email: 'chef.edinburgh@steakz.com' }, update: {}, create: { email: 'chef.edinburgh@steakz.com', name: 'Head Chef Edinburgh', role: 'CHEF', password: await hash('Chef@Edin1'), branchId: 'edinburgh' } }),
+    prisma.user.upsert({ where: { email: 'cashier.edinburgh@steakz.com' }, update: {}, create: { email: 'cashier.edinburgh@steakz.com', name: 'Cashier Edinburgh', role: 'CASHIER', password: await hash('Cash@Edin1'), branchId: 'edinburgh' } }),
+    prisma.user.upsert({ where: { email: 'waiter.edinburgh@steakz.com' }, update: {}, create: { email: 'waiter.edinburgh@steakz.com', name: 'Waiter Edinburgh', role: 'WAITER', password: await hash('Wait@Edin1'), branchId: 'edinburgh' } }),
+
+    // Bristol branch
+    prisma.user.upsert({ where: { email: 'bm.bristol@steakz.com' }, update: {}, create: { email: 'bm.bristol@steakz.com', name: 'Branch Manager Bristol', role: 'BM', password: await hash('BM@Bris1'), branchId: 'bristol' } }),
+    prisma.user.upsert({ where: { email: 'chef.bristol@steakz.com' }, update: {}, create: { email: 'chef.bristol@steakz.com', name: 'Head Chef Bristol', role: 'CHEF', password: await hash('Chef@Bris1'), branchId: 'bristol' } }),
+    prisma.user.upsert({ where: { email: 'cashier.bristol@steakz.com' }, update: {}, create: { email: 'cashier.bristol@steakz.com', name: 'Cashier Bristol', role: 'CASHIER', password: await hash('Cash@Bris1'), branchId: 'bristol' } }),
+    prisma.user.upsert({ where: { email: 'waiter.bristol@steakz.com' }, update: {}, create: { email: 'waiter.bristol@steakz.com', name: 'Waiter Bristol', role: 'WAITER', password: await hash('Wait@Bris1'), branchId: 'bristol' } }),
 
     // Liverpool branch
     prisma.user.upsert({ where: { email: 'bm.liverpool@steakz.com' }, update: {}, create: { email: 'bm.liverpool@steakz.com', name: 'Branch Manager Liverpool', role: 'BM', password: await hash('BM123!'), branchId: 'liverpool' } }),
@@ -68,6 +92,7 @@ export async function seedDatabase() {
 
   console.log('✅ Seed complete!')
 }
+
 seedDatabase()
   .then(() => process.exit(0))
   .catch((e) => {
