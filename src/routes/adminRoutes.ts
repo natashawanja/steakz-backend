@@ -42,6 +42,16 @@ router.post('/users', async (req: Request, res: Response) => {
       data: { name, email, password: hashed, role, branchId: branchId || null }
     })
 
+    // this code runs only if the user was created successfully — log this action in the audit log
+    await prisma.auditLog.create({
+      data: {
+        action: 'CREATE_USER',
+        targetId: user.id,
+        targetType: 'User',
+        performedBy: req.user!.id
+      }
+    })
+
     // Return 201 Created with the new user's ID
     res.status(201).json({ message: 'User created.', userId: user.id })
   } catch {
@@ -91,6 +101,15 @@ router.patch('/users/:id/role', async (req: Request, res: Response) => {
   // Update the user's role in the database
   await prisma.user.update({ where: { id }, data: { role } })
 
+  // Log this role change action in the audit log
+  await prisma.auditLog.create({
+    data: {
+      action: 'CHANGE_ROLE',
+      targetId: id,
+      targetType: 'User',
+      performedBy: req.user!.id
+    }
+  })
   // Confirm the update was successful
   res.json({ message: 'Role updated.' })
 })
@@ -104,6 +123,15 @@ router.patch('/users/:id/activate', async (req: Request, res: Response) => {
   // Set isActive to true in the database
   await prisma.user.update({ where: { id }, data: { isActive: true } })
 
+  // Log this activation action in the audit log
+  await prisma.auditLog.create({
+    data: {
+      action: 'ACTIVATE_USER',
+      targetId: id,
+      targetType: 'User',
+      performedBy: req.user!.id
+    }
+  })
   // Confirm the activation
   res.json({ message: 'User activated.' })
 })
@@ -116,6 +144,16 @@ router.patch('/users/:id/terminate', async (req: Request, res: Response) => {
 
   // Set isActive to false — user cannot log in but data is preserved
   await prisma.user.update({ where: { id }, data: { isActive: false } })
+
+  // Log this deactivation action in the audit log
+  await prisma.auditLog.create({
+    data: {
+      action: 'DEACTIVATE_USER',
+      targetId: id,
+      targetType: 'User',
+      performedBy: req.user!.id
+    }
+  })
 
   // Confirm the deactivation
   res.json({ message: 'User deactivated.' })
@@ -136,6 +174,16 @@ router.post('/branches', async (req: Request, res: Response) => {
   // Create the new branch in the database
   const branch = await prisma.branch.create({
     data: { name, address, city }
+  })
+
+  // Log this branch creation action in the audit log
+  await prisma.auditLog.create({
+    data: {
+      action: 'CREATE_BRANCH',
+      targetId: branch.id,
+      targetType: 'Branch',
+      performedBy: req.user!.id
+    }
   })
 
   // Return 201 Created with the new branch's ID
@@ -211,6 +259,15 @@ router.post('/promotions', async (req: Request, res: Response) => {
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         branchId: branchId || null // null means the promo applies to all branches
+      }
+    })
+    // Log this promotion creation action in the audit log
+    await prisma.auditLog.create({
+      data: {
+        action: 'CREATE_PROMOTION',
+        targetId: promo.id,
+        targetType: 'Promotion',
+        performedBy: req.user!.id
       }
     })
 
